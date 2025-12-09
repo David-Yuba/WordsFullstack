@@ -1,0 +1,9 @@
+:host {
+  padding: var(--content-to-block-window-borders) var(--content-to-inline-window-borders);
+}
+
+@media screen and (min-width: 992px) {
+  :host {
+    display: none;
+  }
+}

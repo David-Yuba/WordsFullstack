@@ -1,0 +1,21 @@
+<open-menu-icon iconName="arrow_drop_down" [(open)]="open"/>
+
+<div class="content" [ngClass]="{'active': open}">
+  @for(section of blogContent(); track $index){
+    @if (section.elementType === supportedElements.H2){
+      <h2><a [attr.data-pos] = "$index" >{{section.elementContent}}</a></h2>
+    }
+    @else if (section.elementType === supportedElements.H3){
+      <h3><a [attr.data-pos] = "$index">{{section.elementContent}}</a></h3>
+    }
+    @else if (section.elementType === supportedElements.H4){
+      <h4><a [attr.data-pos] = "$index">{{section.elementContent}}</a></h4>
+    }
+    @else if (section.elementType === supportedElements.H5){
+      <h5><a [attr.data-pos] = "$index">{{section.elementContent}}</a></h5>
+    }
+    @else if (section.elementType === supportedElements.H6){
+      <h6><a [attr.data-pos] = "$index">{{section.elementContent}}</a></h6>
+    }
+  }
+</div>

@@ -3,19 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "words.client": {
+    "WordsFrontend": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -35,7 +25,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/globalCSS/styles.css"
             ]
           },
           "configurations": {
@@ -66,17 +56,13 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "words.client:build:production"
+              "buildTarget": "WordsFrontend:build:production"
             },
             "development": {
-              "buildTarget": "words.client:build:development"
+              "buildTarget": "WordsFrontend:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "src/proxy.conf.js",
-            "port": 52626
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
@@ -96,9 +82,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "karmaConfig": "karma.conf.js"
+              "src/globalCSS/styles.css"
+            ]
           }
         }
       }

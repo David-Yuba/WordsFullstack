@@ -1,0 +1,29 @@
+@if(scrollbarModel.windowWidth() <= 992) {
+  <div class="scrollable-content" [style.top.px] = "-this.scrollbarModel.scrollPercentage()*(this.scrollbarModel.elementHeight()-(this.scrollbarModel.getWindowHeight()-this.scrollbarModel.getHeaderHeight()))">
+    <nav-sub-menu [blogContent]="blogData.getBlogObjectContent('home')"/>
+
+    <blog [blogContent]="blogData.getBlogObjectContent('home')"/>
+  </div>
+  <scrollbar
+    [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
+    [elementHeight]="scrollbarModel.elementHeight()"
+    [scrollPercentage]="scrollbarModel.scrollPercentage()"
+    [headerHeight]="scrollbarModel.getHeaderHeight()"
+    >
+  </scrollbar>
+}
+@else {
+  <div>
+    <desktop-nav-sub-menu [blogContent]="blogData.getBlogObjectContent('home')"/>
+    <div class="scrollable-content" [style.top.px] = "scrollPosition()">
+      <blog [blogContent]="blogData.getBlogObjectContent('home')"/>
+    </div>
+  </div>
+  <scrollbar
+    [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
+    [elementHeight]="scrollbarModel.elementHeight()"
+    [scrollPercentage]="scrollbarModel.scrollPercentage()"
+    [headerHeight]="scrollbarModel.getHeaderHeight()"
+    >
+  </scrollbar>
+}

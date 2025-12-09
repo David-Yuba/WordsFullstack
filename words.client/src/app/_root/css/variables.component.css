@@ -1,0 +1,27 @@
+/* Global variables used in the whole app that can change during runtime */
+
+
+:host {
+  /* Theme colors */
+  --background-color: black;
+  --menu-background-color: black;
+  --menu-item-hover-bg: rgb(194, 194, 194);
+  --font-color: white;
+  --icon-color: white;
+  --sub-menu-bg: rgb(71, 71, 71);
+  --highlighted-heading: coral;
+  /* Padding, sizing and spacing */
+  --menu-size: 64px;
+  --content-to-block-window-borders: 16px;
+  --content-to-inline-window-borders: 16px;
+}
+
+:host(.light-theme) {
+  --background-color: white;
+  --menu-background-color: white;
+  --menu-item-hover-bg: rgb(107, 107, 107);
+  --font-color: black;
+  --icon-color: black;
+  --sub-menu-bg: rgb(175, 175, 175);
+  --highlighted-heading: cornflowerblue;
+}

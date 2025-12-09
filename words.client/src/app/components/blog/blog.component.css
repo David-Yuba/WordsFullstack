@@ -1,0 +1,5 @@
+:host {
+  max-width: 576px;
+  margin: 0 auto;
+  padding: var(--content-to-block-window-borders) var(--content-to-inline-window-borders);
+}

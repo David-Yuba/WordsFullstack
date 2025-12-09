@@ -1,0 +1,28 @@
+@if(scrollbarModel.windowWidth() <= 992) {
+  <div class="scrollable-content" [style.top.px] = "scrollPosition()">
+    <search-sub-menu [blogInfoArray]="blogInfo" [(filteredBlogs)]="filteredBlogs"/>
+    <cards [cardData]="blogsToDisplay()"></cards>
+  </div>
+
+  <scrollbar
+    [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
+    [elementHeight]="scrollbarModel.elementHeight()"
+    [scrollPercentage]="scrollbarModel.scrollPercentage()"
+    [headerHeight]="scrollbarModel.getHeaderHeight()"
+    >
+  </scrollbar>
+}
+@else {
+  <search-sub-menu [blogInfoArray]="blogInfo" [(filteredBlogs)]="filteredBlogs"/>
+  <div class="scrollable-content" [style.top.px] = "scrollPosition()">
+    <cards [cardData]="blogsToDisplay()"></cards>
+  </div>
+
+  <scrollbar
+    [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
+    [elementHeight]="scrollbarModel.elementHeight()"
+    [scrollPercentage]="scrollbarModel.scrollPercentage()"
+    [headerHeight]="scrollbarModel.getHeaderHeight()"
+    >
+  </scrollbar>
+}

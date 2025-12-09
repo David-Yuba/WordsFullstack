@@ -1,0 +1,21 @@
+open-menu-icon {
+  text-align: center;
+
+  padding-bottom: 0px;
+}
+
+.scrollable-content {
+  position: relative;
+  top: 0;
+}
+
+open-menu-icon {
+  display: block;
+}
+
+@media screen and (min-width: 992px) {
+  :host > div {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+  }
+}

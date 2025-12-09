@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0;
+}
+.content {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+}
+
+.content.active {
+  width: auto;
+  height: auto;
+}
+
+open-menu-icon {
+  user-select: none;
+  cursor: pointer;
+  display: block;
+}
+
+@media screen and (min-width: 992px) {
+  :host {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: start;
+    align-items: start;
+
+    height: auto;
+    padding-block: var(--content-to-block-window-borders);
+    padding-inline: 0;
+  }
+  .content.active {
+    height: auto;
+  }
+  open-menu-icon {
+    transform: translateY(-16px) rotate(-90deg) ;
+  }
+}

@@ -1,0 +1,29 @@
+<nav [ngClass]="{'active': menuOpen}">
+  <a routerLink="/">
+    <div class="material-symbols-outlined">Home</div>
+    <div>Home</div>
+  </a>
+  <a routerLink="/about">
+    <div class="material-symbols-outlined">text_snippet</div>
+    <div>About</div>
+  </a>
+  <a routerLink="/blogs">
+    <div class="material-symbols-outlined">search</div>
+    <div>Blogs</div>
+  </a>
+  <a routerLink="/sources">
+    <div class="material-symbols-outlined">person</div>
+    <div>Sources</div>
+  </a>
+</nav>
+<div class="options" (click)="updateTheme()" [ngClass]="{'active': setingsOpen}">
+  @if(theme()){
+    <div class="material-symbols-outlined">dark_mode</div>
+  }
+  @else {
+    <div class="material-symbols-outlined">light_mode</div>
+  }
+</div>
+
+<open-menu-icon iconName="settings" [(open)]="setingsOpen"></open-menu-icon>
+<open-menu-icon iconName="menu" [(open)]="menuOpen"></open-menu-icon>

@@ -1,0 +1,25 @@
+@for(section of blogContent(); track $index){
+  @switch(section.elementType){
+    @case (supportedElements.H1){
+      <h1 class="heading">{{section.elementContent}}</h1>
+    }
+    @case (supportedElements.H2){
+      <h2 class="heading">{{section.elementContent}}</h2>
+    }
+    @case (supportedElements.H3){
+      <h3 class="heading">{{section.elementContent}}</h3>
+    }
+    @case (supportedElements.H4){
+      <h4 class="heading">{{section.elementContent}}</h4>
+    }
+    @case (supportedElements.H5){
+      <h5 class="heading">{{section.elementContent}}</h5>
+    }
+    @case (supportedElements.H6){
+      <h6 class="heading">{{section.elementContent}}</h6>
+    }
+    @case (supportedElements.P){
+      <p id="{{$index-1}}">{{section.elementContent}}</p>
+    }
+  }
+}

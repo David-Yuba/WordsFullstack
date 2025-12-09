@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 320px;
+}
+
+a {
+  margin-top: auto;
+  padding: 8px 16px;
+  text-align: center;
+  color: var(--font-color);
+  border-radius: 8px;
+  background-color: grey;
+}
+a:hover {
+  background-color: coral;
+}

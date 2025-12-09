@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.tag {
+  padding: 8px 16px;
+  background-color: gray;
+  border-radius: 16px;
+}
+.tag.active {
+  background-color: coral;
+}
+
+.tag:hover {
+  background-color: coral;
+}
+@media screen and (min-width: 992px) {
+  :host {
+    justify-content: start;
+  }
+}

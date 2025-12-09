@@ -1,0 +1,20 @@
+:host {
+  overflow: hidden;
+}
+/* Appearance css */
+/*
+  --background-color
+  --font-color
+*/
+:host {
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
+@media screen and (min-width: 992px) {
+  :host {
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+  }
+}

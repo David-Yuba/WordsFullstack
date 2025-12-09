@@ -1,0 +1,6 @@
+<img src="{{data()?.image}}"/>
+<h4>{{data()?.title}}</h4>
+<h5>{{data()?.date_created}}</h5>
+<h5>{{data()?.written_by}}</h5>
+<h5>{{data()?.short_description}}</h5>
+<a [routerLink]="['../blog',data()?.id]">Read more</a>

@@ -1,0 +1,32 @@
+:host {
+  --scrollbar-padding: 4px;
+  height: calc(var(--scrollbar-height));
+  width: var(--scrollbar-width);
+
+  position: absolute;
+  top: var(--header-height);
+  right: 0;
+
+  --scrollbar-width: 12px;
+
+  border-radius: 8px;
+  background-color: gray;
+}
+
+.scroll-thumb {
+  width: calc(var(--scrollbar-width) / 2);
+  height: var(--scrollbar-thumb-height);
+
+  position: relative;
+  top: clamp(var(--scrollbar-padding),
+    calc(var(--scroll-percentage) * (calc(var(--scrollbar-height)) - var(--scrollbar-thumb-height))),
+    calc(var(--scroll-percentage) * (calc(var(--scrollbar-height)) - var(--scrollbar-thumb-height)) - var(--scrollbar-padding)));
+
+  margin: 0 auto;
+
+  border-radius: 8px;
+  background-color: aliceblue;
+}
+.padding {
+  height: 8px;
+}

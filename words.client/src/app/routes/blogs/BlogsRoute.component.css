@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0;
+}
+
+.scrollable-content {
+  padding: 16px;
+  position: relative;
+}
+
+@media screen and (min-width: 992px) {
+  :host {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    justify-content: start;
+    align-items: start;
+  }
+}

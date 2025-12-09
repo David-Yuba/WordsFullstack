@@ -1,0 +1,8 @@
+<div>
+  <label>Search by blog name:</label>
+  <input type="text" (input)="onInput()" [formControl] = "searchTerm"/>
+</div>
+<div>
+  <label>Include desired tags:</label>
+  <tags  [tagsArray]="tags" [(tagsModel)]="activeTags"/>
+</div>

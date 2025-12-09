@@ -1,0 +1,44 @@
+@import "./reset.css";
+@import "./variables.css";
+@import "./icons.css";
+
+/* Containers */
+body {
+  overflow: hidden;
+}
+
+/* Font sizes */
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.7rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.3rem;
+}
+h5 {
+  font-size: 1.2rem;
+}
+h6 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+p {
+  font-size: 1.1rem;
+}
+/* Text spacing */
+h1:not(:last-child) , h2:not(:last-child), h3:not(:last-child), h4:not(:last-child), h5:not(:last-child), h6:not(:last-child) {
+  margin-bottom: 16px;
+}
+p:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+/* Angular specific QOL */
+router-outlet {
+  display: none;
+}

@@ -1,0 +1,3 @@
+@for (tag of tagsModel(); track $index;){
+  <div [attr.data-index]="$index" class="tag" [ngClass]="{'active': tag.active}" (click)="onTagClick($event)">{{ tag.tagName }}</div>
+}
