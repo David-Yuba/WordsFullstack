@@ -31,7 +31,10 @@ export default class HomeRoute {
   });
   headerPositions?: Array<number>;
 
-  constructor (private el: ElementRef, private renderer: Renderer2){
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+    this.blogData.getServerData().then((data) => {
+      console.log(data);
+    })
     this.scrollbarModel.setElementRef(inject(ElementRef));
 
     afterEveryRender(() =>{

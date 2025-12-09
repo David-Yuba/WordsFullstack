@@ -12,6 +12,7 @@ import BlogData from "../../services/blogs.service";
 export default class SourcesRoute {
   serverData = inject(BlogData);
   constructor() {
-    console.log(this.serverData.getServerData());
+    this.serverData.getServerData().then((data) => {
+    })
   }
 }
