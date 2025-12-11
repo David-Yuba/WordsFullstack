@@ -1,6 +1,9 @@
-@Words.Server_HostAddress = http://localhost:5241
+@Words.Server_HostAddress = https://localhost:7179
+GET {{Words.Server_HostAddress}}/api/blogs
 
-GET {{Words.Server_HostAddress}}/weatherforecast/
-Accept: application/json
+###
+
+@id=0
+GET {{Words.Server_HostAddress}}/api/blogs/{{id}}
 
 ###
