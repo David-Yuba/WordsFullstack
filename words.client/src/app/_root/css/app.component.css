@@ -1,5 +1,6 @@
 :host {
   overflow: hidden;
+  flex-grow: 1;
 }
 /* Appearance css */
 /*

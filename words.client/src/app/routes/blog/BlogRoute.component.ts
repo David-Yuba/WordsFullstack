@@ -1,4 +1,4 @@
-import { Component, inject, ElementRef, afterEveryRender, computed, Renderer2 } from "@angular/core";
+import { Component, inject, ElementRef, afterEveryRender, computed, Renderer2, signal, WritableSignal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import NavSubMenu from "../../components/navSubMenu/navsubmenu.component";
@@ -7,7 +7,7 @@ import Blog from "../../components/blog/blog.component";
 import Scrollbar from "../../components/scrollbar/scrollbar.component";
 import { ScrollbarModelData } from "../../components/scrollbar/scrollbar.service";
 
-import BlogData from "../../services/blogs.service";
+import BlogData, { BlogSection } from "../../services/blogs.service";
 
 @Component({
   selector: "blog-route",
@@ -25,7 +25,9 @@ import BlogData from "../../services/blogs.service";
 })
 export default class BlogRoute {
   readonly blogId: number;
-  blogData = inject(BlogData);
+  data = inject(BlogData);
+  blogContent: WritableSignal<Array<BlogSection>> = signal([]);
+
   private route = inject(ActivatedRoute)
 
   scrollbarModel = inject(ScrollbarModelData);
@@ -36,6 +38,10 @@ export default class BlogRoute {
 
   constructor (private el: ElementRef, private renderer: Renderer2){
     this.blogId = Number(this.route.snapshot.paramMap.get("id"));
+
+    this.data.getBlogById(this.blogId).then((blog) => {
+      this.blogContent.set(this.data._getBlogObjectContent(blog))
+    })
 
     this.scrollbarModel.setElementRef(inject(ElementRef));
 

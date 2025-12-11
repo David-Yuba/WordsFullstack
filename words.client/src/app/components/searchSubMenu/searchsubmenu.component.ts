@@ -1,4 +1,4 @@
-import { Component, input, model, computed, effect, signal } from "@angular/core";
+import { Component, input, model, computed, effect, signal, WritableSignal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 import Tags from "./tags/tags.component";
@@ -19,7 +19,6 @@ export default class SearchSubMenu {
   blogInfoArray = input<Array<BlogInfo>>();
 
   filteredBlogs = model<Array<number>>();
-  tags!: Array<string>;
   activeTags: any = signal([]);
 
   searchTerm = new FormControl("");
@@ -46,11 +45,8 @@ export default class SearchSubMenu {
 
   constructor() {
     effect(()=> {
-      this.filteredBlogs.set(this.filterBlogs().reduce((blogs: Array<number>, blog) => [...blogs, blog.id], [] ))
+      this.filteredBlogs.set(this.filterBlogs().reduce((blogs: Array<number>, blog) => [...blogs, blog.blog_ID], [] ))
     })
-  }
-  ngOnInit(){
-    this.tags = Array.from(new Set(this.blogInfoArray()!.reduce((tags:Array<string>, blog) => [...tags, ...blog.tags], [])))
   }
   onInput (){
     const newValue = this.searchTerm.value;

@@ -16,22 +16,24 @@ export interface BlogSection {
   elementContent: string;
 }
 export type Blog ={
-    id: number;
+    blog_ID: number;
     title: string;
     date_created: string;
     written_by: string;
-    image: string;
+    img: string;
     short_description: string;
     tags: Array<string>;
     content: string;
 }
 export type Blogs = Array<Blog>
 export interface BlogInfo {
-  id: number;
+  blog_ID: number;
   title: string;
+  img: string;
   date_created: string;
   written_by: string;
   tags: Array<string>;
+  short_description: string;
 }
 
 
@@ -168,25 +170,78 @@ export default class BlogData {
     ],
   }
 
+  emptyBlog!: BlogData;
+
   getBlogContent() {
     return this.b.blogs
   }
-  async getServerData() {
-    const url = "/weatherforecast";
+  async getBlogs() {
+    const url = "/api/blogs";
 
     try {
       const response = await fetch(url);
       if (!response) throw new Error("Fetching failed");
 
-      const result = response.json();
+      const result = await response.json();
 
       return result;
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
+  }
+  async getBlogById(id: number) {
+    const url = `/api/blogs/${id}`;
 
+    try {
+      const response = await fetch(url);
+      if (!response) throw new Error("Fetching failed");
+
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
   }
   /* Parse a string containg HTML markup and return an Array of BlogSections */
+  _getBlogObjectContent(blog: Blog): Array<BlogSection> {
+    let result: Array<BlogSection>;
+    let splitReg = new RegExp(/<\x2f\D\d?>/, "g");
+
+    result = blog.content.split(splitReg).map(
+      function (el): BlogSection {
+        let temp = el.slice(1).split(">");
+        switch (temp[0]) {
+          case "h1":
+            return { elementType: ElementType.H1, elementContent: temp[1] }
+            break;
+          case "h2":
+            return { elementType: ElementType.H2, elementContent: temp[1] }
+            break;
+          case "h3":
+            return { elementType: ElementType.H3, elementContent: temp[1] }
+            break;
+          case "h4":
+            return { elementType: ElementType.H4, elementContent: temp[1] }
+            break;
+          case "h5":
+            return { elementType: ElementType.H5, elementContent: temp[1] }
+            break;
+          case "h6":
+            return { elementType: ElementType.H6, elementContent: temp[1] }
+            break;
+          case "p":
+            return { elementType: ElementType.P, elementContent: temp[1] }
+            break;
+          default:
+            return { elementType: ElementType.UNDEFINED, elementContent: "" }
+        }
+      }
+    );
+    result.pop();
+
+    return result;
+  }
   getBlogObjectContent(route: keyof(typeof this.b)): Array<BlogSection> {
     let result: Array<BlogSection>;
     let splitReg = new RegExp(/<\x2f\D\d?>/,"g");

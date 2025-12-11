@@ -26,7 +26,7 @@ export class ScrollbarModelData {
   }
   updateScrollPercentage(event: WheelEvent){
     event.preventDefault();
-    const deltaPercentage = 0.1;
+    const deltaPercentage = 0.04;
     if(event.deltaY > 0)
       this.scrollPercentage.update(cur => ( cur + deltaPercentage ) >= 1 ? 1 : ( cur + deltaPercentage ));
     else

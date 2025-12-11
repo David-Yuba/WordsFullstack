@@ -2,7 +2,7 @@ import { Component, input } from "@angular/core";
 
 import Card from "./card/card.component";
 
-import { Blogs } from "../../services/blogs.service";
+import { BlogInfo } from "../../services/blogs.service";
 
 @Component({
   selector: "cards",
@@ -11,5 +11,5 @@ import { Blogs } from "../../services/blogs.service";
   styleUrl: "cards.component.css"
 })
 export default class Cards {
-  cardData = input<Blogs>();
+  cardData = input<Array<BlogInfo>>();
 }

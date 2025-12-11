@@ -1,6 +1,6 @@
 @if(scrollbarModel.windowWidth() <= 992) {
   <div class="scrollable-content" [style.top.px] = "scrollPosition()">
-    <search-sub-menu [blogInfoArray]="blogInfo" [(filteredBlogs)]="filteredBlogs"/>
+    <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs"/>
     <cards [cardData]="blogsToDisplay()"></cards>
   </div>
 
@@ -13,7 +13,7 @@
   </scrollbar>
 }
 @else {
-  <search-sub-menu [blogInfoArray]="blogInfo" [(filteredBlogs)]="filteredBlogs"/>
+  <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs"/>
   <div class="scrollable-content" [style.top.px] = "scrollPosition()">
     <cards [cardData]="blogsToDisplay()"></cards>
   </div>

@@ -1,4 +1,4 @@
-import { Component, inject, ElementRef, afterEveryRender, computed, Renderer2 } from "@angular/core";
+import { Component, inject, ElementRef, afterEveryRender, computed, Renderer2, signal, WritableSignal } from "@angular/core";
 
 import NavSubMenu from "../../components/navSubMenu/navsubmenu.component";
 import DesktopNavSubMenu from "../../components/desktopNavSubMenu/navsubmenu.component";
@@ -6,7 +6,7 @@ import Blog from "../../components/blog/blog.component";
 import Scrollbar from "../../components/scrollbar/scrollbar.component";
 import { ScrollbarModelData } from "../../components/scrollbar/scrollbar.service";
 
-import BlogData from "../../services/blogs.service";
+import BlogData, { BlogSection } from "../../services/blogs.service";
 
 @Component({
   selector: "home-route",
@@ -23,7 +23,8 @@ import BlogData from "../../services/blogs.service";
   }
 })
 export default class HomeRoute {
-  blogData = inject(BlogData);
+  data = inject(BlogData);
+  blogContentObject: WritableSignal<Array<BlogSection>> = signal([]);
 
   scrollbarModel = inject(ScrollbarModelData);
   scrollPosition = computed(() => {
@@ -32,10 +33,11 @@ export default class HomeRoute {
   headerPositions?: Array<number>;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
-    this.blogData.getServerData().then((data) => {
-      console.log(data);
-    })
     this.scrollbarModel.setElementRef(inject(ElementRef));
+
+    this.data.getBlogById(0).then((blog) => {
+      this.blogContentObject.set(this.data._getBlogObjectContent(blog));
+    });
 
     afterEveryRender(() =>{
       this.scrollbarModel.windowWidth.set(this.scrollbarModel.getWindowWidth());

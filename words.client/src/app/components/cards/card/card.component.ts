@@ -1,6 +1,6 @@
 import { Component,input } from "@angular/core";
 
-import { Blog } from "../../../services/blogs.service";
+import { BlogInfo } from "../../../services/blogs.service";
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -10,5 +10,5 @@ import { RouterLink } from "@angular/router";
   imports: [RouterLink]
 })
 export default class Card {
-  data = input<Blog>();
+  data = input<BlogInfo>();
 }

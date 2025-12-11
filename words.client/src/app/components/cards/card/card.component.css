@@ -16,3 +16,17 @@ a {
 a:hover {
   background-color: coral;
 }
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 8px;
+}
+.tag {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  background-color: grey;
+}

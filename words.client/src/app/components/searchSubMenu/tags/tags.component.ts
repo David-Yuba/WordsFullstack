@@ -1,5 +1,6 @@
-import { Component, input, model } from "@angular/core";
+import { Component, model, inject } from "@angular/core";
 import { NgClass } from "@angular/common";
+import BlogData, { Blog, Blogs } from "../../../services/blogs.service";
 
 @Component({
   selector: "tags",
@@ -8,11 +9,16 @@ import { NgClass } from "@angular/common";
   imports: [NgClass],
 })
 export default class Tags {
-  tagsArray = input<Array<string>>();
+  data = inject(BlogData)
+  tagsArray = Array<string>;
   tagsModel = model<Array<{tagName: string, active: boolean}>>();
 
-  ngOnInit(){
-    this.tagsModel.set(this.tagsArray()!.map((tag) => ({tagName: tag, active: false})));
+  ngOnInit() {
+    this.data.getBlogs().then((data: Blogs) => {
+      const tags = new Set(data.map(data => data.tags).reduce((endingArray, startingArray) => [...endingArray, ...startingArray], []));
+      const result = Array.from(tags).map((tag: string) => ({ tagName: tag, active: false }))
+      this.tagsModel.set(result);
+    })
   }
 
   onTagClick(event: MouseEvent){

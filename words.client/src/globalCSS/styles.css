@@ -4,7 +4,12 @@
 
 /* Containers */
 body {
+  display: flex;
+  height: 100vh;
   overflow: hidden;
+}
+.routes {
+    height: 100%;
 }
 
 /* Font sizes */
