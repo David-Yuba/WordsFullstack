@@ -7,18 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
-var connectionString = builder.Configuration.GetConnectionString("LOCAL_DEVELOPMENT_CONNECTIONSTRING")
-    ?? throw new InvalidOperationException("Connectionstring" + "'LOCAL_DEVELOPMENT_CONNECTIONSTRING' not found.");
+var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
+    ?? throw new InvalidOperationException("Connectionstring" + "'AZURE_SQL_CONNECTIONSTRING' not found.");
 
 builder.Services.AddDbContext<BlogContext>(opt =>
     opt.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
+// Serve static files from wwwroot
 app.UseDefaultFiles();
-app.MapStaticAssets();
+app.UseStaticFiles();
+
+app.UseRouting();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,25 +30,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//string connectionString = app.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
-
-//try
-//{
-//    using var conn = new SqlConnection(connectionString);
-//    conn.Open();
-//    var command = new SqlCommand("CREATE TABLE Persons (ID int NOT NULL PRIMARY KEY IDENTITY, FirstName varchar(255), LastName varchar(255))", conn);
-//    using SqlDataReader reader = command.ExecuteReader();
-
-//}
-//catch (Exception e)
-//{
-//    Console.WriteLine(e.Message);
-//}
-
 app.UseAuthorization();
 
-app.MapFallbackToFile("/index.html");
-
+// Map API controllers first so they are not shadowed by the SPA fallback
 app.MapControllers();
+
+// Fallback to the SPA index.html for non-API routes
+app.MapFallbackToFile("/index.html");
 
 app.Run();

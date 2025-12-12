@@ -1,12 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\words.client</SpaRoot>
+	<SpaDist>..\words.client\dist\WordsFrontend\browser</SpaDist>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:52626</SpaProxyServerUrl>
+	<SpaBuildOnPublish>true</SpaBuildOnPublish>
+	<SpaCopyStaticAssets>true</SpaCopyStaticAssets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,4 +37,13 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+	<SpaFiles Include="$(SpaDist)\**\*" />
+  </ItemGroup>
+
+  <Target Name="CopySpaDist" AfterTargets="Publish">
+  	<RemoveDir Directories="$(PublishDir)\wwwroot" />
+  	<MakeDir Directories="$(PublishDir)\wwwroot" />
+  	<Copy SourceFiles="@(SpaFiles)" DestinationFolder="$(PublishDir)\wwwroot\%(RecursiveDir)" Condition=" '@(SpaFiles)' != '' " />
+  </Target>
 </Project>
