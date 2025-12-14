@@ -12,9 +12,21 @@ open-menu-icon {
   display: block;
 }
 
+.loading-content {
+  padding: 16px;
+  align-items: center
+}
+
 @media screen and (min-width: 992px) {
   :host > div {
     display: grid;
     grid-template-columns: max-content 1fr;
+  }
+
+  .loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
   }
 }

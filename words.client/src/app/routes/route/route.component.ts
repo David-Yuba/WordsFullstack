@@ -1,4 +1,4 @@
-import { Component, computed, inject, afterEveryRender, ElementRef, Renderer2} from "@angular/core";
+import { Component, signal, computed, inject, afterEveryRender, ElementRef, Renderer2} from "@angular/core";
 
 import BlogData from "../../services/blogs.service";
 import { ScrollbarModelData } from "../../components/scrollbar/scrollbar.service";
@@ -20,6 +20,8 @@ export default class RouteComponent {
   data = inject(BlogData);
   scrollbarModel = inject(ScrollbarModelData);
   headerPositions?: Array<number>;
+  isLoading = signal(true);
+
   scrollPosition = computed(() => {
     return -this.scrollbarModel.scrollPercentage() * (this.scrollbarModel.elementHeight() - (this.scrollbarModel.getWindowHeight() - this.scrollbarModel.getHeaderHeight()))
   });

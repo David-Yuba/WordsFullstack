@@ -22,6 +22,7 @@ export default class HomeRoute extends RouteComponent {
 
     this.data.getBlogById(0).then((blog) => {
       this.blogContentObject.set(this.data._getBlogObjectContent(blog));
+      this.isLoading.set(false);
     });
   }
 }

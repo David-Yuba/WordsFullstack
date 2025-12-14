@@ -1,9 +1,10 @@
 @if(scrollbarModel.windowWidth() <= 992) {
-  <div class="scrollable-content" [style.top.px] = "scrollPosition()">
-    <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs"/>
-    <cards [cardData]="blogsToDisplay()"></cards>
-  </div>
-
+  @defer (when !isLoading()){
+    <div class="scrollable-content" [style.top.px] = "scrollPosition()">
+      <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs"/>
+      <cards [cardData]="blogsToDisplay()"></cards>
+    </div>
+  } @placeholder { <p class="loading-content">Loading...</p>}
   <scrollbar
     [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
     [elementHeight]="scrollbarModel.elementHeight()"
@@ -13,11 +14,14 @@
   </scrollbar>
 }
 @else {
-  <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs"/>
-  <div class="scrollable-content" [style.top.px] = "scrollPosition()">
-    <cards [cardData]="blogsToDisplay()"></cards>
-  </div>
-
+  @defer (when !isLoading()){
+    <div>
+      <search-sub-menu [blogInfoArray]="blogInfo()" [(filteredBlogs)]="filteredBlogs" />
+      <div class="scrollable-content" [style.top.px]="scrollPosition()">
+        <cards [cardData]="blogsToDisplay()"></cards>
+      </div>
+    </div>
+  } @placeholder { <p class="loading-content">Loading...</p>}
   <scrollbar
     [scrollbarHeight]="scrollbarModel.windowHeight() - scrollbarModel.getHeaderHeight()"
     [elementHeight]="scrollbarModel.elementHeight()"

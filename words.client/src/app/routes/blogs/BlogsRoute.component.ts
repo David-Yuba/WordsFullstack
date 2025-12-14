@@ -39,6 +39,7 @@ export default class BlogsRoute extends RouteComponent{
         const result = blogs.map((blog: Blog) => ({ blog_ID: blog.blog_ID, title: blog.title, img: blog.img, date_created: blog.date_created, written_by: blog.written_by, tags: blog.tags, short_description: blog.short_description }));
         this.data.emptyBlog = result.shift();
         this.blogInfo.set(result);
+        this.isLoading.set(false);
       })
   }
 }
