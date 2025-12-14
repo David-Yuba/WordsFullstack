@@ -7,4 +7,8 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\words.client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="src\app\routes\NewFolder\**" />
+    <TypeScriptConfiguration Remove="src\app\routes\NewFolder\**" />
+  </ItemGroup>
 </Project>
