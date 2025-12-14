@@ -60,13 +60,15 @@ export default class RouteComponent {
 
   private pointerDownCleanUp?: () => void;
   onPointerDown(e: PointerEvent) {
+    let previousPoint = e.clientY;
     this.pointerDownCleanUp = this.renderer.listen(
       this.el.nativeElement,
       "pointermove",
       (pointerEvent) => {
-        const startingPoint = e.clientY;
+        const startingPoint = previousPoint;
         const deltaPosition = startingPoint - pointerEvent.clientY;
-        this.scrollbarModel.setScrollPercentage(deltaPosition / 10);
+        previousPoint = pointerEvent.clientY;
+        this.scrollbarModel.setScrollPercentage(deltaPosition);
       }
     )
   }
