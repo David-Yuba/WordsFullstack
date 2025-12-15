@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
-var connectionString = builder.Configuration.GetConnectionString("LOCAL_DEVELOPMENT_CONNECTIONSTRING")
+var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")
     ?? throw new InvalidOperationException("Connectionstring" + "'AZURE_SQL_CONNECTIONSTRING' not found.");
 
 builder.Services.AddDbContext<BlogContext>(opt =>
