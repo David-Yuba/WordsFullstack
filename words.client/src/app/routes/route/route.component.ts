@@ -62,11 +62,13 @@ export default class RouteComponent {
 
   private pointerDownCleanUp?: () => void;
   onPointerDown(e: PointerEvent) {
+    e.preventDefault();
     let previousPoint = e.clientY;
     this.pointerDownCleanUp = this.renderer.listen(
       this.el.nativeElement,
       "pointermove",
       (pointerEvent) => {
+        pointerEvent.preventDefault();
         const startingPoint = previousPoint;
         const deltaPosition = startingPoint - pointerEvent.clientY;
         previousPoint = pointerEvent.clientY;
